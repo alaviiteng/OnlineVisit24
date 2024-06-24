@@ -1,0 +1,4 @@
+1;Dr. Madahi;Osteopathy;Expert in osteopathy with 10 years of experience.;madahi.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone; Tehran
+2;Dr. Joghataei;Physiotherapy;Specialist in physiotherapy, helping patients recover mobility.;joghataei.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone; Shiraz
+3;Dr. Alavi;Pediatrics;Child healthcare specialist with 15 years of experience.;alavi.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone; Isfahan
+4;Dr. Rad;Gastroenterology;Gastroenterology expert with numerous published research.;rad.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone; Mashhad

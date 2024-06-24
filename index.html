@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Doctor</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('static/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+        h1 {
+            color: #fff;
+            background-color: rgba(76, 175, 80, 0.8);
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            margin: 30;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #fff;
+            margin: 20px 0;
+        }
+        h3 {
+            color: #fff;
+            margin: 10px 0;
+        }
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        #doctorList {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        .doctor-item {
+            background: rgba(224, 247, 250, 0.9);
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .doctor-item:hover {
+            background-color: rgba(178, 235, 242, 0.9);
+        }
+        .doctor-item img {
+            border-radius: 5px;
+            margin-bottom: 10px;
+            max-width: 100px;
+        }
+        label {
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+        }
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to Iranian Virtual Visit</h1>
+    <h2>Online Visit 24</h2>
+    <h3>Please Select Your Desired Doctor</h3>
+    <form id="doctorForm">
+        <div id="doctorList"></div>
+        <button type="button" onclick="clearSelection()">Clear</button>
+        <button type="button" onclick="nextPage()">Next</button>
+    </form>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            loadDoctors();
+        });
+
+        function loadDoctors() {
+            fetch('static/doctors.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const doctors = data.split('\n');
+                    const doctorList = document.getElementById('doctorList');
+                    doctors.forEach(doctor => {
+                        if (doctor.trim() !== '') {
+                            const doctorDetails = doctor.split(';');
+                            const doctorId = doctorDetails[0];
+                            const doctorName = doctorDetails[1];
+                            const skill = doctorDetails[2];
+                            const description = doctorDetails[3];
+                            const picture = doctorDetails[4];
+                            const platforms = doctorDetails.slice(5, 10).join(', ');
+                            const location = doctorDetails[6];
+
+
+                            const label = document.createElement('label');
+                            label.htmlFor = `doctor_${doctorId}`;
+                            label.textContent = doctorName;
+
+                            const radio = document.createElement('input');
+                            radio.type = 'radio';
+                            radio.id = `doctor_${doctorId}`;
+                            radio.name = 'doctor';
+                            radio.value = doctor;
+
+                            const div = document.createElement('div');
+                            div.className = 'doctor-item';
+                            div.onclick = () => document.getElementById(`doctor_${doctorId}`).checked = true;
+                            div.appendChild(radio);
+                            div.innerHTML += `
+                                <img src="static/${picture}" alt="${doctorName}">
+                                <h3>${doctorName}</h3>
+                                <p><strong>Skill:</strong> ${skill}</p>
+                                <p>${description}</p>
+                                <p><strong>Available on:</strong> ${platforms}</p>
+                                <p><strong>Location on:</strong> ${location}</p>
+                            `;
+                            doctorList.appendChild(div);
+                            div.appendChild(label);
+                        }
+                    });
+                });
+        }
+
+        function clearSelection() {
+            const radios = document.querySelectorAll('input[name="doctor"]');
+            radios.forEach(radio => radio.checked = false);
+            alert('Selection cleared');
+        }
+
+        function nextPage() {
+            const selectedDoctor = document.querySelector('input[name="doctor"]:checked');
+            if (selectedDoctor) {
+                const doctor = selectedDoctor.value;
+                localStorage.setItem('selectedDoctor', doctor);
+                fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ data: doctor })
+                }).then(() => {
+                    window.location.href = '/page2';
+                });
+            } else {
+                alert('Please select a doctor');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+1 dr.madahi osteopaty
+{"name":"SeyyedMorteza","family":"alavi","phone":"6477176939","email":"Alavi.IT.Eng@gmail.com"}
+{"date":"2024-06-08","time":"from 10 to 11"}
+{"date":"2024-06-25","time":"from 12 to 13"}
+{"date":"2024-06-17","time":"from 12 to 13"}
+1 dr.madahi osteopaty
+{"date":"2024-06-20","time":"from 15 to 16"}
+2 dr.joghataei phisio
+{"name":"SeyyedMorteza","family":"Alavi","phone":"6477176939","email":"Alavi.IT.Eng@gmail.com"}
+{"date":"2024-06-18","time":"from 13 to 14"}
+5 dr.salavati
+{"name":"SeyyedMorteza Alavi","family":"g","phone":"6477176939","email":"Alavi.IT.Eng@gmail.com"}
+{"date":"2024-06-20","time":"from 15 to 16"}
+{"name":"SEYYEDMORTEZA","family":"Alavi","phone":"6477176939","email":"Alavi.It.Eng@gmail.com"}
+{"date":"2024-06-25","time":"from 16 to 17"}
+5;dr.salavati;;description;pic5;Telegram;Zoom;GooGleMeet;Skype;
+{"name":"test 2024","family":"test 2025","phone":"test 2026","email":"test@2027"}
+{"date":"2024-06-27","time":"from 12 to 13"}
+1;Dr. Madahi;Osteopathy;Expert in osteopathy with 10 years of experience.;madahi.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Tehran
+2;Dr. Joghataei;Physiotherapy;Specialist in physiotherapy, helping patients recover mobility.;joghataei.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Shiraz
+3;Dr. Alavi;Pediatrics;Child healthcare specialist with 15 years of experience.;alavi.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Isfahan
+4;Dr. Rad;Gastroenterology;Gastroenterology expert with numerous published research.;rad.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Mashhad
+
+{"name":"Morteza Alavi","family":"Alavi","phone":"6477176939","email":"Alavi.It.Eng@gmail.com"}
+{"name":"SEYYEDMORTEZA ALAVI","family":"Alavi","phone":"6477176939","email":"Alavi.It.Eng@gmail.com"}
+{"name":"SEYYEDMORTEZA ALAVI","family":"Alavi","phone":"6477176939","email":"Alavi.It.Eng@gmail.com"}
+{"date":"18th of july","time":"from 11 to 12"}
+1;Dr. Madahi;Osteopathy;Expert in osteopathy with 10 years of experience.;madahi.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Tehran
+2;Dr. Joghataei;Physiotherapy;Specialist in physiotherapy, helping patients recover mobility.;joghataei.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Shiraz
+3;Dr. Alavi;Pediatrics;Child healthcare specialist with 15 years of experience.;alavi.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Isfahan
+4;Dr. Rad;Gastroenterology;Gastroenterology expert with numerous published research.;rad.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Mashhad
+
+4;Dr. Rad;Gastroenterology;Gastroenterology expert with numerous published research.;rad.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Mashhad
+
+{"name":"SEYYEDMORTEZA ALAVI","family":"Alavi","phone":"6477176939","email":"Alavi.It.Eng@gmail.com"}
+{"date":"2024-06-28","time":"from 16 to 17"}
+4;Dr. Rad;Gastroenterology;Gastroenterology expert with numerous published research.;rad.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Mashhad
+
+{"name":"yyyy","family":"yyyyy","phone":"yyyyyy","email":"yyyy@yyyy"}
+{"date":"2024-06-29","time":"from 12 to 13"}
+3;Dr. Alavi;Pediatrics;Child healthcare specialist with 15 years of experience.;alavi.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone;Isfahan
+
+{"name":"jjjjj","family":"qwe","phone":"qwe","email":"qwe@qwe"}
+{"date":"2024-06-27","time":"from 15 to 16"}
+2;Dr. Joghataei;Physiotherapy;Specialist in physiotherapy, helping patients recover mobility.;joghataei.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone; Shiraz
+
+{"name":"mmmm","family":"mmmm","phone":"mmmm","email":"mmm@mmm"}
+4;Dr. Rad;Gastroenterology;Gastroenterology expert with numerous published research.;rad.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone; Mashhad
+
+{"name":"Morteza Alavi","family":"555","phone":"6477176939","email":"Alavi.It.Eng@gmail.com"}
+{"date":"2024-06-24","time":"from 16 to 17"}
+2;Dr. Joghataei;Physiotherapy;Specialist in physiotherapy, helping patients recover mobility.;joghataei.jpg;Zoom, Google Meet, Skype, WhatsApp, Phone; Shiraz
+
+{"name":"SEYYEDMORTEZA ALAVI","family":"jh","phone":"6477176939","email":"Alavi.It.Eng@gmail.com"}
+{"date":"2024-06-25","time":"from 15 to 16"}

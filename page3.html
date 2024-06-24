@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Date and Time</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.css">
+    <style>
+        body {
+            background: url('static/background_page3.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+        h1 {
+            color: #fff;
+            background-color: rgba(76, 175, 80, 0.8);
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .flatpickr-calendar {
+            width: 20%;
+        }
+        .time-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .time-button {
+            background-color: #e0f7fa;
+            border: 1px solid #4CAF50;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            text-align: center;
+            width: 100px;
+            transition: background-color 0.3s ease;
+        }
+        .time-button.selected {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .time-button:hover {
+            background-color: #b2ebf2;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .back-btn {
+            background-color: #2196F3;
+        }
+        .back-btn:hover {
+            background-color: #1E88E5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Select Date and Time</h1>
+    <div class="container">
+        <h2>Select Date</h2>
+        <input type="text" id="datePicker" placeholder="Select Date">
+        <h2>Select Time</h2>
+        <div class="time-buttons" id="timeList"></div>
+        <button onclick="cancel()">Cancel</button>
+        <button onclick="nextPage()">Next</button>
+        <button class="back-btn" onclick="goBack()">Back</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flatpickr/4.6.9/flatpickr.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            flatpickr("#datePicker", {
+                dateFormat: "Y-m-d",
+                minDate: "today",
+                onChange: function(selectedDates, dateStr, instance) {
+                    localStorage.setItem('selectedDate', dateStr);
+                }
+            });
+            loadTimes();
+        });
+
+        function loadTimes() {
+            fetch('static/times.txt')
+                .then(response => response.text())
+                .then(data => {
+                    const times = data.split('\n');
+                    const timeList = document.getElementById('timeList');
+                    times.forEach(time => {
+                        if (time.trim() !== '') {
+                            const div = document.createElement('div');
+                            div.textContent = time.trim();
+                            div.className = 'time-button';
+                            div.onclick = () => selectTime(div);
+                            timeList.appendChild(div);
+                        }
+                    });
+                });
+        }
+
+        function selectTime(selectedDiv) {
+            const times = document.querySelectorAll('.time-button');
+            times.forEach(div => div.classList.remove('selected'));
+            selectedDiv.classList.add('selected');
+            localStorage.setItem('selectedTime', selectedDiv.textContent);
+        }
+
+        function cancel() {
+            window.location.href = '/';
+        }
+
+        function nextPage() {
+            const selectedDate = localStorage.getItem('selectedDate');
+            const selectedTime = localStorage.getItem('selectedTime');
+            if (selectedDate && selectedTime) {
+                const dateTimeSelection = { date: selectedDate, time: selectedTime };
+                localStorage.setItem('dateTimeSelection', JSON.stringify(dateTimeSelection));
+
+                fetch('/submit', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ data: JSON.stringify(dateTimeSelection) })
+                }).then(() => {
+                    window.location.href = '/page4';
+                });
+            } else {
+                alert('Please select both a date and a time');
+            }
+        }
+
+        function goBack() {
+            window.location.href = '/page2';
+        }
+    </script>
+</body>
+</html>

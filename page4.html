@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('static/background_page4.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+        h1 {
+            color: #fff;
+            background-color: rgba(76, 175, 80, 0.8);
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .invoice {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+            color: #333;
+        }
+        .invoice-header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .invoice-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .invoice-table th, .invoice-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .invoice-table th {
+            background-color: #4CAF50;
+            color: white;
+        }
+        .total {
+            text-align: right;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+        .total span {
+            font-weight: bold;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Summary</h1>
+    <div class="invoice">
+        <div class="invoice-header">Invoice</div>
+        <table class="invoice-table">
+            <thead>
+                <tr>
+                    <th>Description</th>
+                    <th>Details</th>
+                </tr>
+            </thead>
+            <tbody id="summary"></tbody>
+        </table>
+        <div class="total">Total Cost: <span>25 CAD</span></div>
+        <button onclick="submitRequest()">Agree</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            showSummary();
+        });
+
+        function showSummary() {
+            const doctor = localStorage.getItem('selectedDoctor');
+            const customerInfo = JSON.parse(localStorage.getItem('customerInfo'));
+            const dateTimeSelection = JSON.parse(localStorage.getItem('dateTimeSelection'));
+
+            const summaryTable = document.getElementById('summary');
+            summaryTable.innerHTML = `
+                <tr>
+                    <td>Doctor</td>
+                    <td>${doctor}</td>
+                </tr>
+                <tr>
+                    <td>Name</td>
+                    <td>${customerInfo.name}</td>
+                </tr>
+                <tr>
+                    <td>Family</td>
+                    <td>${customerInfo.family}</td>
+                </tr>
+                <tr>
+                    <td>Phone</td>
+                    <td>${customerInfo.phone}</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td>${customerInfo.email}</td>
+                </tr>
+                <tr>
+                    <td>Date</td>
+                    <td>${dateTimeSelection.date}</td>
+                </tr>
+                <tr>
+                    <td>Time</td>
+                    <td>${dateTimeSelection.time}</td>
+                </tr>
+            `;
+        }
+
+        function submitRequest() {
+            alert('Your request submitted');
+            localStorage.clear();
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>

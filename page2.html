@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Information</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            background: url('static/background_page2.jpg') no-repeat center center fixed;
+            background-size: cover;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: #333;
+        }
+        h1 {
+            color: #fff;
+            background-color: rgba(76, 175, 80, 0.8);
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 80%;
+            max-width: 600px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        label {
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="email"] {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .clear-btn {
+            background-color: #f44336;
+        }
+        .clear-btn:hover {
+            background-color: #e53935;
+        }
+        .back-btn {
+            background-color: #2196F3;
+        }
+        .back-btn:hover {
+            background-color: #1E88E5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Customer Information</h1>
+    <form id="customerForm" onsubmit="event.preventDefault(); saveCustomerInfo();">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="family">Family:</label>
+        <input type="text" id="family" name="family" required>
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="phone" required>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <button type="submit">Next</button>
+        <button type="button" class="clear-btn" onclick="clearForm()">Clear</button>
+        <button type="button" class="back-btn" onclick="goBack()">Back</button>
+    </form>
+    <script>
+        function saveCustomerInfo() {
+            const name = document.getElementById('name').value;
+            const family = document.getElementById('family').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+
+            const customerInfo = { name, family, phone, email };
+            localStorage.setItem('customerInfo', JSON.stringify(customerInfo));
+
+            fetch('/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data: JSON.stringify(customerInfo) })
+            }).then(() => {
+                window.location.href = '/page3';
+            });
+        }
+
+        function clearForm() {
+            document.getElementById('customerForm').reset();
+        }
+
+        function goBack() {
+            window.location.href = '/';
+        }
+    </script>
+</body>
+</html>
